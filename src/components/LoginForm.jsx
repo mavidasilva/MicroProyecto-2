@@ -116,14 +116,23 @@ const LoginForm = () => {
             onClick={handleGoogleLogin}
             className="bg-gray-100 border border-gray-300 py-3 w-full flex items-center justify-center rounded-full mb-2"
           >
-            <img src="google-logo.png" alt="Google Logo" className="h-6 mr-2" />{" "}
+            <img
+              src="images/googleIcon.png"
+              alt="Google Logo"
+              className="h-6 mr-2"
+            />
             Google
           </button>
           <button
             onClick={handleAppleLogin}
-            className="bg-gray-100 border border-gray-300 py-3 w-full flex items-center justify-center rounded-full"
+            className="bg-gray-100 border border-gray-300 py-3 w-full flex items-center justify-center rounded-full mb-2"
           >
-            <img src="apple-logo.png" alt="Apple Logo" className="h-6 mr-2" />{" "}
+            <img
+              src="images/appleIcon.png"
+              alt="Apple Logo"
+              className="h-6 mr-2"
+              style={{ height: "1.75rem", marginTop: "-0.25rem" }} // Ajusta el tamaño de la imagen y la posición
+            />
             Apple
           </button>
         </div>
