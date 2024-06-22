@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  registerWithCredentials,
+  signInWithGoogle,
+  signInWithApple,
+} from "../controllers/auth";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +14,8 @@ const RegisterForm = () => {
     telefono: "",
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -16,10 +24,42 @@ const RegisterForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí puedes manejar el envío del formulario
-    console.log(formData);
+    const { nombre, email, contraseña, telefono } = formData;
+    const user = await registerWithCredentials(
+      nombre,
+      email,
+      contraseña,
+      telefono,
+      ""
+    ); // Pasamos una carrera vacía por ahora
+    if (user) {
+      console.log("User registered successfully", user);
+      navigate("/landing"); // Navegar a la página de aterrizaje
+    } else {
+      console.log("Registration failed");
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    const user = await signInWithGoogle();
+    if (user) {
+      console.log("User logged in with Google", user);
+      navigate("/landing"); // Navegar a la página de aterrizaje
+    } else {
+      console.log("Google login failed");
+    }
+  };
+
+  const handleAppleLogin = async () => {
+    const user = await signInWithApple();
+    if (user) {
+      console.log("User logged in with Apple", user);
+      navigate("/landing"); // Navegar a la página de aterrizaje
+    } else {
+      console.log("Apple login failed");
+    }
   };
 
   return (
@@ -82,7 +122,7 @@ const RegisterForm = () => {
             type="submit"
             className="bg-orange-600 text-white py-4 w-full rounded-full mb-6 text-lg font-semibold"
           >
-            Iniciar sesion
+            Registrar
           </button>
         </form>
         <div className="additional-options mb-6">
@@ -92,7 +132,7 @@ const RegisterForm = () => {
             <span className="text-gray-500 mx-2">–</span>
           </div>
           <button
-            onClick={() => console.log("Google Login")}
+            onClick={handleGoogleLogin}
             className="bg-gray-100 border border-gray-300 py-3 w-full flex items-center justify-center rounded-full mb-2"
           >
             <img
@@ -103,7 +143,7 @@ const RegisterForm = () => {
             Google
           </button>
           <button
-            onClick={() => console.log("Apple Login")}
+            onClick={handleAppleLogin}
             className="bg-gray-100 border border-gray-300 py-3 w-full flex items-center justify-center rounded-full"
           >
             <img

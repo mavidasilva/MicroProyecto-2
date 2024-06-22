@@ -1,6 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    navigate("/login");
+  };
+
   return (
     <header className="bg-white text-lightOrange flex justify-between items-center p-2 border-b-4 border-white flex-wrap">
       <div className="flex items-center">
@@ -33,7 +40,10 @@ const Header = () => {
             </a>
           </li>
           <li>
-            <button className="text-lightOrange text-lg font-bold border-2 border-lightOrange rounded-full px-4 py-1.5 hover:bg-lightOrange hover:text-white transition-colors duration-300">
+            <button
+              onClick={handleLoginClick}
+              className="text-lightOrange text-lg font-bold border-2 border-lightOrange rounded-full px-4 py-1.5 hover:bg-lightOrange hover:text-white transition-colors duration-300"
+            >
               Ingresar
             </button>
           </li>
