@@ -15,7 +15,7 @@ const Landing = () => {
 
   return (
     <div>
-      <h1>Hola</h1>
+      <h1>Hola Bienvenidos</h1>
       <button onClick={handleLogout}>Logout</button>
     </div>
   );
