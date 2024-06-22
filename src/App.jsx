@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import AppRouter from "./router";
-import { UserContext } from "./hooks/user";
 
 const App = () => {
-  const [user, setUser] = useState(null);
-
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <div className="App">
       <AppRouter />
-    </UserContext.Provider>
+    </div>
   );
 };
 
