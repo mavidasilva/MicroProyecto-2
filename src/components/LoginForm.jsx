@@ -106,7 +106,7 @@ const LoginForm = () => {
           >
             ¿Olvidaste tu contraseña?
           </button>
-          <a href="#" className="text-orange-600 block mb-6">
+          <a href="/register" className="text-orange-600 block mb-6">
             No tienes cuenta? Regístrate aquí
           </a>
           <div className="divider my-5 flex items-center justify-center">

@@ -20,14 +20,20 @@ import { auth, googleProvider, appleProvider } from "../firebase";
 import { db } from "../firebase";
 
 // Función para registrar usuario con email y contraseña
-export async function registerWithCredentials(name, email, password, number) {
+export async function registerWithCredentials(
+  name,
+  email,
+  password,
+  number,
+  career
+) {
   try {
     const { user } = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
-    await createUserData(user.uid, name, email, number);
+    await createUserData(user.uid, name, email, number, career);
     return user;
   } catch (error) {
     console.error(error);
@@ -36,13 +42,14 @@ export async function registerWithCredentials(name, email, password, number) {
 }
 
 // Función para crear datos de usuario en Firestore
-export async function createUserData(id, name, email, number) {
+export async function createUserData(id, name, email, number, career) {
   await setDoc(doc(db, "users", id), {
     name: name,
     email: email,
     userRole: "1",
     number: number,
     image: "",
+    career: career,
   });
 }
 
@@ -66,7 +73,13 @@ export async function signInWithGoogle() {
 
     // Si es un nuevo usuario, crea su documento en Firestore
     if (additionalUserInfo.isNewUser) {
-      await createUserData(user.uid, user.displayName, user.email, "");
+      await createUserData(
+        user.uid,
+        user.displayName,
+        user.email,
+        "04120000000",
+        ""
+      );
     }
 
     return user;
@@ -85,7 +98,13 @@ export async function signInWithApple() {
 
     // Si es un nuevo usuario, crea su documento en Firestore
     if (additionalUserInfo.isNewUser) {
-      await createUserData(user.uid, user.displayName, user.email, "", "");
+      await createUserData(
+        user.uid,
+        user.displayName,
+        user.email,
+        "04120000000",
+        ""
+      );
     }
 
     return user;
