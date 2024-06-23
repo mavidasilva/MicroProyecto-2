@@ -141,3 +141,8 @@ export async function resetPassword(email) {
     console.error("Error sending password reset email:", error);
   }
 }
+
+export async function updateUserData(uid, data) {
+  const userDoc = doc(db, "users", uid);
+  await updateDoc(userDoc, data);
+}

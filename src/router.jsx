@@ -8,6 +8,7 @@ import {
 import Login from "./pages/Login";
 import Landing from "./pages/Landing";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 
 const AppRouter = () => (
   <Router>
@@ -16,6 +17,7 @@ const AppRouter = () => (
       <Route path="/login" element={<Login />} />
       <Route path="/landing" element={<Landing />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/perfil" element={<Profile />} />
     </Routes>
   </Router>
 );
