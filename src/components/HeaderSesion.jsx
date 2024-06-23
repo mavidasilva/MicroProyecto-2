@@ -17,7 +17,7 @@ const HeaderSesion = () => {
         <ul className="flex space-x-6 flex-wrap m-0 p-0 list-none">
           <li className="py-1.5">
             <a
-              href="#"
+              href="/landing"
               className="text-lightOrange text-lg font-bold hover:border-b-2 border-lightOrange"
             >
               Inicio
